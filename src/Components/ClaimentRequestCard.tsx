@@ -63,7 +63,7 @@ const ClaimentRequestCard = ({ id }: { id: number | undefined }) => {
     setPopData(res.data);
     setPOP(true);
     popTimeOuter();
-    
+
     //To refresh window
     setTimeout(function () {
       window.location.reload();
@@ -88,7 +88,9 @@ const ClaimentRequestCard = ({ id }: { id: number | undefined }) => {
             </p>
             <div className="mt-3 text-sm  md:text-lg">
               <div>
-                <span className="font-semibold block text-xs md:text-lg">Description: </span>{" "}
+                <span className="font-semibold block text-xs md:text-lg">
+                  Description:{" "}
+                </span>{" "}
                 {claiment?.aboutProduct}
               </div>
             </div>
@@ -104,14 +106,16 @@ const ClaimentRequestCard = ({ id }: { id: number | undefined }) => {
                   onClick={() => {
                     handleClick(claiment.id);
                   }}
-                  className="border focus-outline-none cursor-not-allowed text-xs md:text-lg  py-2 px-3 md:px-4 border-gray-600 rounded-md hover:text-black font-semibold hover:bg-[#9fe870]  ease-linear"
+                  className={`border focus-outline-none ${
+                    claiment.isAproved ? "cursor-not-allowed" : "cursor-pointer"
+                  } text-xs md:text-lg  py-2 px-3 md:px-4 border-gray-600 rounded-md hover:text-black font-semibold hover:bg-[#9fe870]  ease-linear`}
                 >
                   Approve
                 </button>
               </div>
             )}
           </div>
-        ))    
+        ))
       ) : (
         <div>No Request Here !!</div>
       )}
