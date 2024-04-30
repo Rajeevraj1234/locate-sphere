@@ -4,6 +4,7 @@ import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import firebaseApp from "../firerbase/FirebaseApp";
 import { FcGoogle } from "react-icons/fc";
 import { useState } from "react";
+import Popup from "../Components/Popup";
 
 const googleAuth = getAuth(firebaseApp);
 const googleProvider = new GoogleAuthProvider();
@@ -11,6 +12,23 @@ const googleProvider = new GoogleAuthProvider();
 const Signup = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
+
+  //pop all working
+  interface PopInterface {
+    status: boolean;
+    msg: string;
+  }
+
+  const [isPOP, setPOP] = useState<boolean>(false);
+  const [popData, setPopData] = useState<PopInterface | undefined>(undefined);
+
+  function popTimeOuter() {
+    setTimeout(() => {
+      setPOP(false);
+      navigate("/");
+    }, 3000);
+    navigate("/");
+  }
 
   //google signup
 
@@ -37,7 +55,12 @@ const Signup = () => {
       localStorage.setItem("imageUrl", res.data.imageUrl);
       navigate("/");
     } catch (error) {
-      alert("Error during Signup try again later");
+      setPopData({
+        status: false,
+        msg: "Internal server error try again after some time",
+      });
+      setPOP(true);
+      popTimeOuter();
       setLoading(false);
     }
   };
@@ -148,6 +171,11 @@ const Signup = () => {
           </span>
         </p>
       </div>
+      {isPOP && popData && (
+        <div className="fixed h-[60px] w-[300px] z-[200] top-[10%] right-0">
+          <Popup isRight={popData.status} message={popData.msg} />
+        </div>
+      )}
     </div>
   );
 };

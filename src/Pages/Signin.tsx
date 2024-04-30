@@ -26,6 +26,7 @@ const Signin = () => {
     setTimeout(() => {
       setPOP(false);
     }, 3000);
+    navigate("/")
   }
 
   //signup with google
@@ -61,42 +62,15 @@ const Signin = () => {
         localStorage.setItem("imageUrl", res.data.user.imageUrl);
       }
     } catch (error) {
-      console.log(error);
-
-      alert("Error during Signup try again later !!");
+      setPopData({
+        status:false,
+        msg:"Internal server error try again after some time"
+      });
+      setPOP(true);
+      popTimeOuter();
     }
   };
-  
 
-  // const handleChange = (e: any) => {
-  //   const { name, value } = e.target;
-  //   setFormData({ ...formData, [name]: value });
-  // };
-
-  // const handleSubmit = async (e: any) => {
-  //   setLoading(true);
-  //   e.preventDefault();
-  //   try {
-  //     const response = await axios.post(
-  //       `https://backend_jcurve.rajeevraj9308.workers.dev/userRoute/signin`,
-  //       formData,
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         withCredentials: true
-  //       }
-  //     );
-
-  //     if(response.data.token){
-  //       localStorage.setItem("token",response.data.token);
-  //       localStorage.setItem("name",response.data.name);
-  //       navigate("/")
-  //     }
-  //   } catch (error) {
-  //     console.error("Error:", error);
-  //   }
-  // };
   return (
     <div className="h-[100vh] w-[100vw] px-3 flex bg-blue-50 justify-center items-center">
       <div className="text-center px-10 py-4 bg-blue-50 rounded-xl ">
