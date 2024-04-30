@@ -48,7 +48,7 @@ const Navbar = () => {
               onClick={() => handleClick("/history")}
               className=" cursor-pointer"
             >
-              History
+              HistoryF
             </li>
           )}
 
@@ -117,13 +117,15 @@ const Navbar = () => {
             >
               Upload Item
             </h1>
-            
-             <h1
-              className=" hover:bg-blue-200 py-2 px-2 hover:text-yellow-500 rounded-lg"
-              onClick={() => handleClick("/history")}
-            >
-              History
-            </h1>
+            {auth && (
+              <h1
+                className=" hover:bg-blue-200 py-2 px-2 hover:text-yellow-500 rounded-lg"
+                onClick={() => handleClick("/history")}
+              >
+                History
+              </h1>
+            )}
+
             <h1 className=" hover:bg-gray-700 py-2 px-2 hover:text-yellow-500 rounded-lg">
               {auth ? (
                 <li className="flex items-center gap-2 relative cursor-pointer">

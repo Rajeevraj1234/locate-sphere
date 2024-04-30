@@ -10,6 +10,7 @@ import Product from "./Pages/Product";
 import History from "./Pages/History";
 import Feedback from "./Pages/Feedback";
 import Footer from "./Components/Footer";
+import NotFound from "./Pages/NotFound";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/product/:id" element={<Product />} />
         <Route path="/history" element={<History />} />
         <Route path="/feedback" element={<Feedback />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </>

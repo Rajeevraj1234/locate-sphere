@@ -61,7 +61,7 @@ const Allproducts = () => {
   }
 
   return (
-    <div className="mt-[100px] mx-5 sm:mx-[60px] md:mx-[100px] 2xl:mx-[200px] min-h-[60vh] mb-10">
+    <div className="mt-[100px] mx-5 sm:mx-[60px] md:mx-[100px] 2xl:mx-[250px] min-h-[60vh] mb-10">
       {loader ? (
         <div className="flex justify-center items-center h-[80vh]">
           <img src="/images/loader.gif" alt="Loading..." />
