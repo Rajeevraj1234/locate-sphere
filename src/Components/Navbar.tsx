@@ -48,7 +48,7 @@ const Navbar = () => {
               onClick={() => handleClick("/history")}
               className=" cursor-pointer"
             >
-              HistoryF
+              History
             </li>
           )}
 

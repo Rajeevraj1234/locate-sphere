@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import Popup from "./Popup";
+import { useNavigate } from "react-router-dom";
 
 interface productData {
   name: string;
@@ -10,6 +11,7 @@ interface productData {
 }
 
 const UploadCard = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<productData>({
     name: "",
     location: "",
@@ -63,6 +65,7 @@ const UploadCard = () => {
       category: "",
       lostfound: null,
     });
+    navigate("/products")
   }
 
   return (
