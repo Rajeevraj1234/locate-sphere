@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { FaUserLarge } from "react-icons/fa6";
 import { HiOutlineMailOpen } from "react-icons/hi";
 import Popup from "./Popup";
+import { IoSearch } from "react-icons/io5";
 
 interface claiment {
   id: number;
@@ -17,6 +18,8 @@ interface claiment {
 const ClaimentRequestCard = ({ id }: { id: number | undefined }) => {
   const [claiments, setClaiments] = useState<claiment[]>([]);
   const auth = localStorage.getItem("auth");
+  const [globalClaiment, setGlobalClaiment] = useState<claiment[]>([]);
+  var approvalFlag: boolean = false;
 
   interface PopInterface {
     status: boolean;
@@ -35,22 +38,22 @@ const ClaimentRequestCard = ({ id }: { id: number | undefined }) => {
   useEffect(() => {
     async function pullClaiment() {
       const res = await axios.get(
-        `  https://locate-sphere-backend.rajeevraj9308.workers.dev/api/claiment/getclaiment/${id}`,
+        `  http://localhost:8787/api/claiment/getclaiment/${id}`,
         {
           headers: {
             Authorization: auth,
           },
         }
       );
-
       setClaiments(res.data);
+      setGlobalClaiment(res.data);
     }
     pullClaiment();
   }, []);
 
   async function handleClick(claimentReqId: number) {
     const res = await axios.post(
-      `  https://locate-sphere-backend.rajeevraj9308.workers.dev/api/claiment/approve-claiment/${id}`,
+      `  http://localhost:8787/api/claiment/approve-claiment/${id}`,
       {
         id: claimentReqId,
       },
@@ -70,10 +73,41 @@ const ClaimentRequestCard = ({ id }: { id: number | undefined }) => {
     }, 1000);
   }
 
+  //handle search
+  const handleSearch = (e: any) => {
+    const data = claiments?.filter((val: any) => {
+      return (
+        val?.user?.name?.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        val?.user?.email
+          ?.toLowerCase()
+          .includes(e.target.value.toLowerCase()) ||
+        val?.aboutProduct?.toLowerCase().includes(e.target.value.toLowerCase())
+      );
+    });
+    setGlobalClaiment(data);
+  };
+
+  //search for Approved claiment
+  claiments.map((val) => {
+    val?.isAproved ? (approvalFlag = true) : null;
+    return;
+  });
+
   return (
     <div className="md:w-[600px] grid grid-cols-1 gap-5    rounded-md ">
-      {claiments.length > 0 ? (
-        claiments.map((claiment) => (
+      {claiments?.length > 0 ? (
+        <div className="border sm:w-[300px] overflow-hidden bg-white rounded-xl flex justify-center items-center gap-2 border-gray-400">
+          <IoSearch className="text-xl w-[10%]" />
+          <input
+            onChange={handleSearch}
+            type="text"
+            className="py-2 focus:outline-none w-[90%] "
+            placeholder="Search for keywords"
+          />
+        </div>
+      ) : null}
+      {globalClaiment.length > 0 ? (
+        globalClaiment.map((claiment) => (
           <div
             key={claiment.id}
             className="border border-gray-300 shadow-md bg-[#e4ecec] rounded-md p-4 "
@@ -107,8 +141,8 @@ const ClaimentRequestCard = ({ id }: { id: number | undefined }) => {
                     handleClick(claiment.id);
                   }}
                   className={`border focus-outline-none ${
-                    claiment.isAproved ? "cursor-not-allowed" : "cursor-pointer"
-                  } text-xs md:text-lg  py-2 px-3 md:px-4 border-gray-600 rounded-md hover:text-black font-semibold hover:bg-[#9fe870]  ease-linear`}
+                    approvalFlag ? "cursor-not-allowed" : "cursor-pointer hover:bg-[#9fe870]"
+                  } text-xs md:text-lg  py-2 px-3 md:px-4 border-gray-600 rounded-md hover:text-black font-semibold   ease-linear`}
                 >
                   Approve
                 </button>

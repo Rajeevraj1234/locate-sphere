@@ -46,7 +46,7 @@ const Signup = () => {
       };
 
       const res = await axios.post(
-        `  https://locate-sphere-backend.rajeevraj9308.workers.dev/api/user/signup`,
+        `  http://localhost:8787/api/user/signup`,
         formData
       );
       localStorage.setItem("auth", res.data.token);

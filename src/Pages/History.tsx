@@ -14,7 +14,7 @@ const History = () => {
   useEffect(() => {
     async function pullHistory() {
       const res = await axios.get(
-        "  https://locate-sphere-backend.rajeevraj9308.workers.dev/api/product/getuserhistory",
+        "  http://localhost:8787/api/product/getuserhistory",
         {
           headers: {
             Authorization: auth,

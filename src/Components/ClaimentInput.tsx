@@ -28,7 +28,7 @@ const ClaimentInput = ({
   useEffect(() => {
     async function pullApprovalData() {
       const res = await axios.get(
-        `  https://locate-sphere-backend.rajeevraj9308.workers.dev/api/claiment/client-approval-data/${id}`,
+        `  http://localhost:8787/api/claiment/client-approval-data/${id}`,
         {
           headers: {
             Authorization: auth,
@@ -66,7 +66,7 @@ const ClaimentInput = ({
   }
   async function handleSubmit() {
     const res = await axios.post(
-      `  https://locate-sphere-backend.rajeevraj9308.workers.dev/api/claiment/setclaiment/${id}`,
+      `  http://localhost:8787/api/claiment/setclaiment/${id}`,
       { aboutProduct: data },
       {
         headers: {

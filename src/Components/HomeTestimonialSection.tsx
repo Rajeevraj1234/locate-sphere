@@ -8,7 +8,7 @@ const HomeTestimonialSection = () => {
   useEffect(() => {
     async function pullTestimonials() {
       const res = await axios.get(
-        `  https://locate-sphere-backend.rajeevraj9308.workers.dev/api/testimonials/getTestimonials`
+        `  http://localhost:8787/api/testimonials/getTestimonials`
       );
       setTestimonials(res.data);
     }

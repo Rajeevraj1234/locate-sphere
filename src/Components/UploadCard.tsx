@@ -48,7 +48,7 @@ const UploadCard = () => {
 
   async function handleSubmit() {
     const res = await axios.post(
-      `https://locate-sphere-backend.rajeevraj9308.workers.dev/api/product/setproduct`,
+      `http://localhost:8787/api/product/setproduct`,
       formData,
       {
         headers: {
