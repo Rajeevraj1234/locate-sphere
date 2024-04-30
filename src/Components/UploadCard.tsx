@@ -102,7 +102,8 @@ const UploadCard = () => {
           <option value="">Select Category</option>
           <option value="electronic">Electronic Gadgets</option>
           <option value="vehicle">Vehicles</option>
-          <option value="smartphone">Documents</option>
+          <option value="documents">Documents</option>
+          <option value="books">Books</option>
           <option value="accessories">Accessories</option>
           <option value="sports Equipment">Sports Equipment</option>
           <option value="miscellaneous">Miscellaneous</option>
