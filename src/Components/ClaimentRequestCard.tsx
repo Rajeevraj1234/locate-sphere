@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { FaUserLarge } from "react-icons/fa6";
 import { HiOutlineMailOpen } from "react-icons/hi";
 import Popup from "./Popup";
-import { useNavigate } from "react-router-dom";
 
 interface claiment {
   id: number;
@@ -18,7 +17,6 @@ interface claiment {
 const ClaimentRequestCard = ({ id }: { id: number | undefined }) => {
   const [claiments, setClaiments] = useState<claiment[]>([]);
   const auth = localStorage.getItem("auth");
-  const navigate = useNavigate();
 
   interface PopInterface {
     status: boolean;
@@ -65,10 +63,10 @@ const ClaimentRequestCard = ({ id }: { id: number | undefined }) => {
     setPopData(res.data);
     setPOP(true);
     popTimeOuter();
-
+    
     //To refresh window
     setTimeout(function () {
-      navigate(`/product/${id}`);
+      window.location.reload();
     }, 1000);
   }
 
@@ -90,9 +88,7 @@ const ClaimentRequestCard = ({ id }: { id: number | undefined }) => {
             </p>
             <div className="mt-3 text-sm  md:text-lg">
               <div>
-                <span className="font-semibold block text-xs md:text-lg">
-                  Description:{" "}
-                </span>{" "}
+                <span className="font-semibold block text-xs md:text-lg">Description: </span>{" "}
                 {claiment?.aboutProduct}
               </div>
             </div>
@@ -115,7 +111,7 @@ const ClaimentRequestCard = ({ id }: { id: number | undefined }) => {
               </div>
             )}
           </div>
-        ))
+        ))    
       ) : (
         <div>No Request Here !!</div>
       )}
