@@ -24,7 +24,7 @@ const Allproducts = () => {
 
   useEffect(() => {
     async function pullProuduct() {
-      const res = await axios(`http://localhost:8787/api/product/getproducts`);
+      const res = await axios(`https://locate-sphere-backend.rajeevraj9308.workers.dev/api/product/getproducts`);
       setProduct(res.data);
       setGlobalProducts(res.data);
       setLoader(false);

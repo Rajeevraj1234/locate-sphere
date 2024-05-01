@@ -30,7 +30,7 @@ const FeebackCard = () => {
   async function submitTestimonials() {
     try {
       const res = await axios.post(
-        `  http://localhost:8787/api/testimonials/setTestimonials`,
+        `  https://locate-sphere-backend.rajeevraj9308.workers.dev/api/testimonials/setTestimonials`,
         { content },
         {
           headers: {

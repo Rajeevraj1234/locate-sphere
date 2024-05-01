@@ -38,7 +38,7 @@ const ClaimentRequestCard = ({ id }: { id: number | undefined }) => {
   useEffect(() => {
     async function pullClaiment() {
       const res = await axios.get(
-        `  http://localhost:8787/api/claiment/getclaiment/${id}`,
+        `  https://locate-sphere-backend.rajeevraj9308.workers.dev/api/claiment/getclaiment/${id}`,
         {
           headers: {
             Authorization: auth,
@@ -53,7 +53,7 @@ const ClaimentRequestCard = ({ id }: { id: number | undefined }) => {
 
   async function handleClick(claimentReqId: number) {
     const res = await axios.post(
-      `  http://localhost:8787/api/claiment/approve-claiment/${id}`,
+      `  https://locate-sphere-backend.rajeevraj9308.workers.dev/api/claiment/approve-claiment/${id}`,
       {
         id: claimentReqId,
       },

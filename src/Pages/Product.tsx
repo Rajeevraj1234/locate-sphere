@@ -42,7 +42,7 @@ const Product = () => {
   useEffect(() => {
     async function pullProduct() {
       const res = await axios.get(
-        `  http://localhost:8787/api/product/getsingleprouct/${id}`
+        `  https://locate-sphere-backend.rajeevraj9308.workers.dev/api/product/getsingleprouct/${id}`
       );
       if (res.data.user.email === email) {
         setIsClaimet(false);
